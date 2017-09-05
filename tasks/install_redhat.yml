@@ -1,6 +1,6 @@
 ---
 # Redhat based OS
-- name: Redhat | get rundeck rpm
+- name: Redhat | get rundeck repo rpm
   yum:
     name: http://repo.rundeck.org/latest.rpm
     state: present
@@ -10,9 +10,9 @@
     - install
     - packages
 
-- name: Redhat | get rundeck rpm
+- name: Redhat | Install rundeck via yum
   yum:
-    name: rundeck
+    name: "{{ item }}"
     state: present
   become: yes
   notify:
@@ -21,6 +21,9 @@
     - rundeck
     - install
     - packages
+  items:
+  - "rundeck-{{ rundeck_version }}"
+  - "rundeck-config-{{ rundeck_version }}"
 
 - name: set rundeck_package_command for redhat
   set_fact:
