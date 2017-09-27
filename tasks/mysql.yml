@@ -118,7 +118,7 @@
     line="rundeck.projectsStorageType=db"
     state="present"
 
-- name: Updating values for config.yml
+- name: Rundeck - MySQL | ensure database is used to store keys
   lineinfile:
    dest: "/etc/rundeck/rundeck-config.properties"
    regexp: "{{ item.regexp }}"
